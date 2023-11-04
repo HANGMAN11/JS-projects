@@ -351,8 +351,21 @@ function animateBattle() {
   draggle.draw()
   emby.draw()
 }
-animate()
-//animateBattle()
+//animate()
+animateBattle()
+
+document.querySelectorAll('button').forEach(button =>{
+  button.addEventListener('click', ()=>{
+    draggle.attack({attack: {
+      name:'Tackle',
+      damage: 10,
+      type: 'Normal'
+    },
+    recipient: emby
+  })
+  })
+})
+
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {

@@ -4,24 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      * {
+        font-family: "Press Start 2P", cursive;
+      }
       body {
         background-color: black;
       }
       h1 {
         margin: 0;
       }
-      button{
+      button {
         border: 0;
-        cursor: pointer
+        cursor: pointer;
+        font-size: 16px;
       }
-      button:hover{
+      button:hover {
         background-color: #ccc;
       }
       .inset-border-button:active {
-        border: 4px inset; 
+        border: 4px inset;
       }
-
     </style>
   </head>
   <body>
@@ -39,6 +48,40 @@
           pointer-events: none;
         "
       ></div>
+      <!--health bar of draggle-->
+      <div
+        style="
+          background-color: white;
+          width: 250px;
+          position: absolute;
+          top: 50px;
+          left: 50px;
+          border: 4px black solid;
+          padding: 12px;
+        "
+      ><h1 style="font-size: 16px;">Draggle</h1>
+      <div style="position: relative;">
+      <div style="height: 5px; background-color: #ccc; margin-top: 10px;"></div>
+      <div id="enemyHealth" style="height: 5px; background-color: green; position: absolute; top:0; left: 0; right: 0;"></div>
+    </div>
+      </div>
+            <!--health bar of emby-->
+      <div
+        style="
+          background-color: white;
+          width: 250px;
+          position: absolute;
+          top: 330px;
+          right: 50px;
+          border: 4px black solid;
+          padding: 12px;
+        "
+      ><h1 style="font-size: 16px;">Emby</h1>
+      <div style="position: relative;">
+      <div style="height: 5px; background-color: #ccc; margin-top: 10px;"></div>
+      <div style="height: 5px; background-color: green; position: absolute; top:0; left: 0; right: 0;"></div>
+    </div>
+      </div>
       <canvas></canvas>
       <div
         style="
@@ -52,10 +95,14 @@
           display: flex;
         "
       >
-        <div style="width: 66.6%; display: grid; grid-template-columns: repeat(2, 1fr);">
-          <button class="inset-border-button">Attack</button>
-          <button class="inset-border-button">Attack</button>
-          <button class="inset-border-button">Attack</button>
+        <div
+          style="
+            width: 66.6%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+          "
+        >
+          <button class="inset-border-button">Tackle</button>
           <button class="inset-border-button">Attack</button>
         </div>
         <div
@@ -64,9 +111,10 @@
             align-items: center;
             justify-content: center;
             width: 33.4%;
-            border-left: 3px black solid ;"
+            border-left: 3px black solid;
+          "
         >
-          <h1>Attack type</h1>
+          <h1 style="font-size: 16px">Attack type</h1>
         </div>
       </div>
     </div>
