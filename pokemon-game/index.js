@@ -13,7 +13,6 @@ const battleZonesMap = [];
 for (let i = 0; i < battleZonesData.length; i += 70) {
   battleZonesMap.push(battleZonesData.slice(i, 70 + i));
 }
-console.log(battleZonesMap);
 
 const boundaries = [];
 const offset = {
@@ -51,7 +50,7 @@ battleZonesMap.forEach((row, i) => {
   });
 });
 
-console.log(battleZones);
+
 
 const image = new Image();
 image.src = "./img/Pellet-Town.png";
@@ -79,7 +78,7 @@ const player = new Sprite({
   image: playerDownImage,
   frames: {
     max: 4,
-    hold: 10
+    hold: 10,
   },
   sprites: {
     up: playerUpImage,
@@ -131,8 +130,8 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 }
 
 const battle = {
-  initiated: false
-}
+  initiated: false,
+};
 
 function animate() {
   const animationId = window.requestAnimationFrame(animate);
@@ -146,22 +145,27 @@ function animate() {
   player.draw();
   foreground.draw();
 
-  
   let moving = true;
   player.animate = false;
 
   //console.log(animationId)
-  if (battle.initiated) return
+  if (battle.initiated) return;
 
   //activate a battle
   if (keys.w.pressed || keys.a.pressed || keys.d.pressed || keys.s.pressed) {
     for (let i = 0; i < battleZones.length; i++) {
       const battleZone = battleZones[i];
       const overlappingArea =
-      (Math.min(player.position.x + player.width, battleZone.position.x + battleZone.width) - 
-      Math.max(player.position.x, battleZone.position.x)) *
-      (Math.min(player.position.y + player.height, battleZone.position.y + battleZone.height) -
-      Math.max(player.position.y, battleZone.position.y))
+        (Math.min(
+          player.position.x + player.width,
+          battleZone.position.x + battleZone.width
+        ) -
+          Math.max(player.position.x, battleZone.position.x)) *
+        (Math.min(
+          player.position.y + player.height,
+          battleZone.position.y + battleZone.height
+        ) -
+          Math.max(player.position.y, battleZone.position.y));
       if (
         rectangularCollision({
           rectangle1: player,
@@ -170,32 +174,35 @@ function animate() {
         overlappingArea > (player.width * player.height) / 2 &&
         Math.random() < 0.05
       ) {
-        console.log("battle activation");
 
         //deactivate current animation loop
-        window.cancelAnimationFrame(animationId)
+        window.cancelAnimationFrame(animationId);
 
-        battle.initiated = true
-        gsap.to('#overlappingDiv', {
+        audio.Map.stop()
+        audio.initBattle.play()
+        audio.battle.play()
+        battle.initiated = true;
+        gsap.to("#overlappingDiv", {
           opacity: 1,
           repeat: 3,
           yoyo: true,
           duration: 0.4,
-          onComplete(){
-            gsap.to('#overlappingDiv',{
+          onComplete() {
+            gsap.to("#overlappingDiv", {
               opacity: 1,
               yoyo: 0.4,
-              onComplete(){
+              onComplete() {
                 //activate a new animation loop
-                animateBattle()
-                gsap.to('#overlappingDiv',{
+                initBattle()
+                animateBattle();
+                gsap.to("#overlappingDiv", {
                   opacity: 0,
                   yoyo: 0.4,
-                })
-              }
-            })         
-          }
-        })
+                });
+              },
+            });
+          },
+        });
         break;
       }
     }
@@ -306,66 +313,6 @@ function animate() {
 }
 //animate();
 
-const battleBackgroundImage = new Image()
-battleBackgroundImage.src = './img/battleBackground.png'
-const battleBackground = new Sprite({position: {
-  x:0,
-  y:0
-},
-image: battleBackgroundImage
-})
-
-const draggleImage = new Image()
-draggleImage.src = './img/draggleSprite.png'
-const draggle = new Sprite({
-  position: {
-    x:800,
-    y:100
-  },
-  image: draggleImage,
-  frames: {
-    max: 4,
-    hold: 25
-  },
-  animate: true
-})
-
-const embyImage = new Image()
-embyImage.src = './img/embySprite.png'
-const emby = new Sprite({
-  position: {
-    x:275,
-    y:330
-  },
-  image: embyImage,
-  frames: {
-    max: 4,
-    hold: 25
-  },
-  animate: true
-})
-
-function animateBattle() {
-  window.requestAnimationFrame(animateBattle)
-  battleBackground.draw()
-  draggle.draw()
-  emby.draw()
-}
-//animate()
-animateBattle()
-
-document.querySelectorAll('button').forEach(button =>{
-  button.addEventListener('click', ()=>{
-    draggle.attack({attack: {
-      name:'Tackle',
-      damage: 10,
-      type: 'Normal'
-    },
-    recipient: emby
-  })
-  })
-})
-
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
@@ -405,3 +352,11 @@ window.addEventListener("keyup", (e) => {
       break;
   }
 });
+
+let clicked = false
+addEventListener('click', ()=>{
+  if(!clicked){
+  audio.Map.play()
+  clicked = true
+}
+})
