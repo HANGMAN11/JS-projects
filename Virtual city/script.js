@@ -18,12 +18,13 @@ const s4 = new Segment(p1,p3)
 
 
 const graph = new Graph([p1,p2,p3,p4], [s2,s3,s4]);
-const graphEditor = new GraphEditor(myCanvas, graph)
+const viewport = new Viewport(myCanvas)
+const graphEditor = new GraphEditor(viewport, graph)
 
 animate()
 
 function animate(){
-    ctx.clearRect(0,0,myCanvas.width, myCanvas.height)
+    viewport.reset()
     graphEditor.display();
     requestAnimationFrame(animate)
 }
