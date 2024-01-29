@@ -67,6 +67,12 @@ class GraphEditor {
       this.selected = null;
     }
   }
+  
+  dispose(){
+    this.graph.dispose();
+    this.selected = null;
+    this.hovered = null
+  }
 
   display() {
     this.graph.draw(this.ctx);

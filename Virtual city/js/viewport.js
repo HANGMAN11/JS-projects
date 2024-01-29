@@ -19,11 +19,11 @@ class Viewport {
 
   reset() {
     this.ctx.restore();
-    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     ctx.save();
-    ctx.translate(viewport.center.x, viewport.center.y);
-    ctx.scale(1 / viewport.zoom, 1 / viewport.zoom);
-    const offset = viewport.getOffset();
+    ctx.translate(this.center.x, this.center.y);
+    ctx.scale(1 / this.zoom, 1 / this.zoom);
+    const offset = this.getOffset();
     ctx.translate(offset.x, offset.y);
   }
 
