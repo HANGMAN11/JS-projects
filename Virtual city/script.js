@@ -19,6 +19,7 @@ animate()
 function animate(){
     viewport.reset()
     graphEditor.display();
+    new Envelope(graph.segments[0], 80).draw(ctx)
     requestAnimationFrame(animate)
 }
 
@@ -29,3 +30,6 @@ function dispose(){
 function save(){
     localStorage.setItem("graph", JSON.stringify(graph))
 }
+
+
+console.log('Graph string from local storage:', graphString);
