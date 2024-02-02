@@ -61,6 +61,23 @@ class Polygon{
         }
     }
 
+    containSegment(seg){
+        const midpoint = average(seg.p1, seg.p2);
+        return this.containPoint(midpoint) 
+    }
+
+    containPoint(point){
+        const outerPoint = new Point(-1000,-1000);
+        let intersectionCount = 0;
+        for(const seg of this.segments){
+            const int = getIntersection(outerPoint, point, seg.p1, seg.p2)
+            if(int){
+                intersectionCount++
+            }
+        }
+        return intersectionCount % 2 == 1;
+    }
+
     drawSegment(ctx){
         for (const seg of this.segments){
             seg.draw(ctx, {color: getRandomColor(), width: 5})
