@@ -5,21 +5,22 @@ myCanvas.height = 600;
 
 const ctx = myCanvas.getContext('2d')
 
-
 const graphString = localStorage.getItem("graph");
 const graphInfo = graphString ? JSON.parse(graphString) : null
 const graph = graphInfo 
 ? Graph.load(graphInfo)
 : new Graph();
+const world = new World(graph)
 const viewport = new Viewport(myCanvas)
 const graphEditor = new GraphEditor(viewport, graph)
 
 animate()
 
 function animate(){
-    viewport.reset()
+    viewport.reset();
+    world.generate();
+    world.draw(ctx)
     graphEditor.display();
-    new Envelope(graph.segments[0], 80).draw(ctx)
     requestAnimationFrame(animate)
 }
 
@@ -30,6 +31,3 @@ function dispose(){
 function save(){
     localStorage.setItem("graph", JSON.stringify(graph))
 }
-
-
-console.log('Graph string from local storage:', graphString);

@@ -1,11 +1,11 @@
 class Envelope{
-    constructor(skeleton, width, roundness = 0){
+    constructor(skeleton, width, roundness = 1){
         this.skeleton = skeleton
         this.poly = this.#generatePolygon(width, roundness);
     }
 
     #generatePolygon(width, roundness){
-        
+        const { p1, p2 } = this.skeleton
 
         const radius = width / 2;
         const alpha = angle(subtract(p1, p2));
@@ -25,7 +25,9 @@ class Envelope{
         return new Polygon(points)
     }
     draw(ctx){
-        this.poly.draw(ctx)
+        this.poly.draw(ctx);
+        this.poly.drawSegment(ctx) 
+
     }
 }
 
