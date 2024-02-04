@@ -16,7 +16,7 @@ function distance(p1, p2){
 }
 
 function average (p1, p2){
-    return((p1.x + p2.y)/2,(p1.y + p2.y)/2)
+    return new Point((p1.x + p2.y)/2,(p1.y + p2.y)/2)
 }
 
 function add(p1,p2){
@@ -57,7 +57,7 @@ function getIntersection(A,B,C,D) {
             }
         }
     }
-    return null
+    return null;
 }
 
 function lerp(a, b, t){
