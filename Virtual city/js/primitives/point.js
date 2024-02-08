@@ -4,6 +4,8 @@ class Point {
         this.y = y
     }
 
+    
+
     equals(point){
         return this.x == point.x && this.y == point.y
     }

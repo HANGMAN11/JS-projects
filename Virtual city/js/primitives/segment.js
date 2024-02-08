@@ -4,6 +4,8 @@ class Segment {
     this.p2 = p2;
   }
 
+
+
   length() {
     return distance(this.p1, this.p2);
   }
@@ -18,7 +20,7 @@ class Segment {
 
   includes(point) {
     return this.p1.equals(point) || this.p2.equals(point);
-  }
+  } 
 
   distanceToPoint(point){
     const proj = this.projectPoint(point);
