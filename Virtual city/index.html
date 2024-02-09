@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="js/world.js"></script>
     <script src="js/graphEditor.js"></script>
     <script src="js/viewport.js"></script>
+    <script src="js/items/tree.js"></script>
+    <script src="js/items/building.js"></script>
     <script src="js/math/graph.js"></script>
     <script src="js/math/utils.js"></script>
     <script src="js/primitives/point.js"></script>
-    <script src="js/primitives/segment.js"></script>    
+    <script src="js/primitives/segment.js"></script>
     <script src="js/primitives/polygon.js"></script>
     <script src="js/primitives/envelope.js"></script>
-
-
-</head>
-<body>
+  </head>
+  <body>
     <h1>World Editor</h1>
     <canvas id="myCanvas"></canvas>
     <div id="controls">
-        <button onclick="dispose()">Dispose</button>
-        <button onclick="save()">Save</button>
-
+      <button onclick="dispose()">Dispose</button>
+      <button onclick="save()">Save</button>
     </div>
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
