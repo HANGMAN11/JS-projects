@@ -2,11 +2,24 @@ function getNearestPoint(loc, points, threshold = Number.MAX_SAFE_INTEGER) {
   let minDist = Number.MAX_SAFE_INTEGER;
   let nearest = null;
   for (const point of points) {
-     const dist = distance(point, loc);
-     if (dist < minDist && dist < threshold) {
-        minDist = dist;
-        nearest = point;
-     }
+    const dist = distance(point, loc);
+    if (dist < minDist && dist < threshold) {
+      minDist = dist;
+      nearest = point;
+    }
+  }
+  return nearest;
+}
+
+function getNearestSegment(loc, segments, threshold = Number.MAX_SAFE_INTEGER) {
+  let minDist = Number.MAX_SAFE_INTEGER;
+  let nearest = null;
+  for (const seg of segments) {
+    const dist = seg.distanceToPoint(loc);
+    if (dist < minDist && dist < threshold) {
+      minDist = dist;
+      nearest = seg;
+    }
   }
   return nearest;
 }
@@ -45,8 +58,8 @@ function magnitude(p) {
 
 function translate(loc, angle, offset) {
   return new Point(
-     loc.x + Math.cos(angle) * offset,
-     loc.y + Math.sin(angle) * offset
+    loc.x + Math.cos(angle) * offset,
+    loc.y + Math.sin(angle) * offset
   );
 }
 
@@ -61,15 +74,15 @@ function getIntersection(A, B, C, D) {
 
   const eps = 0.001;
   if (Math.abs(bottom) > eps) {
-     const t = tTop / bottom;
-     const u = uTop / bottom;
-     if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
-        return {
-           x: lerp(A.x, B.x, t),
-           y: lerp(A.y, B.y, t),
-           offset: t,
-        };
-     }
+    const t = tTop / bottom;
+    const u = uTop / bottom;
+    if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
+      return {
+        x: lerp(A.x, B.x, t),
+        y: lerp(A.y, B.y, t),
+        offset: t,
+      };
+    }
   }
 
   return null;

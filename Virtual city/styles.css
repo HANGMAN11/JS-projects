@@ -10,3 +10,13 @@ h1{
 #myCanvas{
     background-color: rgb(23, 129, 48);
 }
+
+button{
+    background-color: white;
+    font-size: 20px;
+    padding: 5px, 7px, 7px, 5px;
+    border: none;
+    border-radius: 5px;
+    text-shadow: 1px, 1px, black;
+    cursor: pointer;
+}
