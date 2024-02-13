@@ -3,18 +3,25 @@ myCanvas.height = 600;
 
 const ctx = myCanvas.getContext("2d");
 
-const graphString = localStorage.getItem("graph");
-const graphInfo = graphString ? JSON.parse(graphString) : null;
-const graph = graphInfo ? Graph.load(graphInfo) : new Graph();
+const worldString = localStorage.getItem("world");
+const worldInfo = worldString ? JSON.parse(worldString) : null;
+const world = worldInfo ? World.load(worldInfo) : new World(new Graph());
 
-const world = new World(graph);
+const graph = world.graph;
+
 const viewport = new Viewport(myCanvas);
 const tools = {
-  graph: { button: graphBtn, editor:  new GraphEditor(viewport, graph) },
+  graph: { button: graphBtn, editor: new GraphEditor(viewport, graph) },
   stop: { button: stopBtn, editor: new StopEditor(viewport, world) },
-  crossing: { button: crossingBtn, editor: new CrossingEditor(viewport, world) },
+  crossing: {
+    button: crossingBtn,
+    editor: new CrossingEditor(viewport, world),
+  },
   start: { button: startBtn, editor: new StartEditor(viewport, world) },
-
+  parking: { button: parkingBtn, editor: new ParkingEditor(viewport, world) },
+  light: { button: lightBtn, editor: new LightEditor(viewport, world) },
+  target: { button: targetBtn, editor: new TargetEditor(viewport, world) },
+  yield: { button: yieldBtn, editor: new YieldEditor(viewport, world) },
 };
 let oldGraphHash = graph.hash();
 
@@ -43,7 +50,7 @@ function dispose() {
 }
 
 function save() {
-  localStorage.setItem("graph", JSON.stringify(graph));
+  localStorage.setItem("world", JSON.stringify(world));
 }
 
 function setMode(mode) {
