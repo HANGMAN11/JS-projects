@@ -1,8 +1,9 @@
-class Yield extends Marking {
+class Stop extends Marking {
   constructor(center, directionVector, width, height) {
     super(center, directionVector, width, height);
 
     this.border = this.poly.segments[2];
+    this.type = "stop"
   }
 
   draw(ctx) {
@@ -17,7 +18,7 @@ class Yield extends Marking {
     ctx.textAlign = "center";
     ctx.fillStyle = "black";
     ctx.font = "bold" + this.height * 0.3 + "px Arial";
-    ctx.fillText("Yield", 0, 1);
+    ctx.fillText("STOP", 0, 1);
 
     ctx.restore();
   }
