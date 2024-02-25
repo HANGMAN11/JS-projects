@@ -1,3 +1,6 @@
+let startPointX =  8246.127817704508; 
+let startPointY = 7079.874512429311;
+let startAngle = -0.4040801117013333
 class Controls {
   constructor(type) {
     this.forward = false;
@@ -28,6 +31,14 @@ class Controls {
           break;
         case "ArrowDown":
           this.reverse = true;
+          break;
+        case "Shift":
+          if (event.code === "ShiftRight") {
+            cars.push(
+              new Car(startPointX, startPointY, 30, 50, "KEYS", startAngle)
+            );
+            cars.shift()
+          }
           break;
       }
     };

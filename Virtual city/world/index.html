@@ -28,6 +28,7 @@
     <script src="js/items/building.js"></script>
     <script src="js/math/utils.js"></script>
     <script src="js/math/graph.js"></script>
+    <script src="js/math/osm.js"></script>
     <script src="js/primitives/point.js"></script>
     <script src="js/primitives/segment.js"></script>
     <script src="js/primitives/polygon.js"></script>
@@ -42,6 +43,7 @@
       <label for="fileInput" class="file-input-label">Load
         <input type="file" id="fileInput", accept=".world" onchange="load(event)">
       </label>
+      <button onclick="openOsmPanel()">Map</button>
       &nbsp;
       <button id="graphBtn" onclick="setMode('graph')">Graph</button>
       <button id="stopBtn" onclick="setMode('stop')">Stop</button>
@@ -53,7 +55,16 @@
       <button id="startBtn" onclick="setMode('start')">Start</button>
 
       <button id="targetBtn" onclick="setMode('target')">Target</button>
+      <div id="osmPanel" style="display: none;">
+        <textarea id="osmDataContainer" rows="10" cols="50" placeholder="Paste OSM data here"></textarea>
+        <div>
+          <button onclick="parseOsmData()">✅</button>
+          <button onclick="closeOsmPanel()">❌</button>
+        </div>
+      </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+      
+    </script>
   </body>
 </html>
